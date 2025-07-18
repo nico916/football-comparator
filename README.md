@@ -1,54 +1,93 @@
-# ⚽ Comparateur de profils de joueurs (Football)
+# Football Player Profile Comparator
 
-Ce projet est un outil interactif développé en **Python** avec **Streamlit** permettant de comparer les profils de joueurs de football professionnels, à partir de leurs statistiques de la saison **2022-2023**.
+![Language](https://img.shields.io/badge/language-Python-3776AB?style=flat-square)
+![Framework](https://img.shields.io/badge/framework-Streamlit-FF4B4B?style=flat-square)
+![Concept](https://img.shields.io/badge/concept-PCA%20%7C%20Data--Viz-blueviolet?style=flat-square)
 
-Il repose sur une **analyse en composantes principales (PCA)** pour projeter les joueurs dans un espace à deux dimensions et calculer leur similarité statistique.
+An interactive web app built with Python & Streamlit to compare football player profiles based on a Principal Component Analysis (PCA) of their 2022-2023 season stats. Data sourced from Kaggle.
 
----
+## Table of Contents
 
-## 🚀 Fonctionnalités
+- [About The Project](#about-the-project)
+- [Live Demo](#live-demo)
+- [Key Features](#key-features)
+- [Built With](#built-with)
+- [Getting Started](#getting-started)
+- [Technical Deep Dive](#technical-deep-dive)
+- [Future Improvements](#future-improvements)
+- [Data Source](#data-source)
+- [License](#license)
 
-- Visualisation de la **variance expliquée** par les composantes principales
-- Affichage des **loadings** des variables sur PC1 et PC2
-- Sélection d’un joueur et affichage des **5 plus proches voisins** (tous postes / même poste)
-- Nuage de points interactif (PC1 vs PC2) avec annotations pour interprétation
+## About The Project
 
----
+This personal project is a direct continuation of a previous academic PCA study. The goal was to transform a static analysis into an interactive and usable tool with **Streamlit**. The application allows users to visually compare professional football players based on their statistics from the 2022-2023 season.
 
-## 📊 Données
+The core idea emerged from observing the player data projected onto a 2D plane: since each point represents a player's statistical profile, the Euclidean distance between points can be used as a measure of similarity.
 
-Les statistiques proviennent de ce dataset public sur Kaggle :  
-📘 **"2022/2023 Football Player Stats"**  
-🔗 [Accéder au dataset sur Kaggle](https://www.kaggle.com/datasets/vivovinco/20222023-football-player-stats)  
-📄 Licence : [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
+## Live Demo
 
-Des modifications ont été apportées :
-- Nettoyage et standardisation
-- Regroupement de certains postes (par exemple : MF/FW → MF)
-- Sélection de 6 variables clés : 
-  - **Shots** (tirs hors penaltys)
-  - **PasTotPrgDist** (distance des passes progressives)
-  - **Assists** (passes décisives)
-  - **SCA** (actions menant à un tir)
-  - **Tkl+Int** (tacles + interceptions)
-  - **ToAtt** (dribbles tentés)
+The application is deployed on Render and can be accessed directly.
 
----
+**👉 [Open the Live Application](https://comparateur-de-profils.onrender.com)**
 
-## 🧪 Technologies utilisées
+*Note: The app is hosted on a free service and may take a few seconds to wake up if it has been idle.*
 
-- Python
-- pandas
-- NumPy
-- Streamlit
-- Plotly
+## Key Features
 
----
+-   **Explained Variance**: Visualizes the variance explained by each principal component.
+-   **Feature Contributions**: Displays the loadings of the selected variables on PC1 and PC2.
+-   **Nearest Neighbors**: Select a player to find and display the 5 most statistically similar players.
+-   **Interactive Scatter Plot**: An interactive plot of PC1 vs. PC2 with conceptual zone annotations.
 
-## 🖥️ Lancer le projet en local
+## Built With
 
-Assurez-vous d'avoir Python installé, puis :
+-   **Python**
+-   **Streamlit**
+-   **Pandas**
+-   **NumPy**
+-   **Scikit-learn**
+-   **Plotly**
 
-```bash
-pip install -r requirements.txt
-streamlit run ComparateurProfil.py
+## Getting Started
+
+To get a local copy up and running, follow these steps.
+
+1.  **Prerequisites**: Ensure you have Python installed.
+2.  **Clone the repository:**
+    ```sh
+    git clone https://github.com/nico916/Comparateur-de-profils.git
+    ```
+3.  **Install dependencies:**
+    ```sh
+    pip install -r requirements.txt
+    ```
+4.  **Run the Streamlit app:**
+    ```sh
+    streamlit run ComparateurProfil.py
+    ```
+
+## Technical Deep Dive
+
+The application relies on a pre-processed dataset where 6 key statistical variables were selected to define player profiles:
+-   **Shots**: Total shots (excluding penalties)
+-   **PasTotPrgDist**: Total progressive passing distance
+-   **Assists**: Goal assists
+-   **SCA**: Shot-Creating Actions
+-   **Tkl+Int**: Tackles + Interceptions
+-   **ToAtt**: Dribbles attempted
+
+These multi-dimensional stats are then reduced to two principal components (PC1 and PC2) using PCA, which form the basis for the 2D visualization and similarity calculations.
+
+## Future Improvements
+
+-   Offer a comparison method that does not rely on PCA.
+-   Add filters for age, league, etc.
+-   Implement a comparison history feature.
+
+## Data Source
+
+The player statistics used in this analysis are from the **"2022/2023 Football Player Stats"** dataset on Kaggle, available under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license. The data was cleaned, standardized, and transformed for this specific analysis.
+
+## License
+
+Distributed under the MIT License. See `LICENSE` file for more information.
