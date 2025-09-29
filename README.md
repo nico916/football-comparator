@@ -55,7 +55,7 @@ To get a local copy up and running, follow these steps.
 1.  **Prerequisites**: Ensure you have Python installed.
 2.  **Clone the repository:**
     ```sh
-    git clone https://github.com/nico916/Comparateur-de-profils.git
+    git clone https://github.com/nico916/football-comparator.git
     ```
 3.  **Install dependencies:**
     ```sh
