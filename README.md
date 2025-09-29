@@ -1,11 +1,10 @@
-# Nicolas Joué - Personal Portfolio
+# Football Player Profile Comparator
 
-![Language](https://img.shields.io/badge/language-JavaScript-F7DF1E?style=flat-square)
-![Framework](https://img.shields.io/badge/framework-Next.js-000000?style=flat-square)
-![Styling](https://img.shields.io/badge/styling-CSS%20Modules-blue?style=flat-square)
-![Deployment](https://img.shields.io/badge/deployment-Vercel-black?style=flat-square)
+![Language](https://img.shields.io/badge/language-Python-3776AB?style=flat-square)
+![Framework](https://img.shields.io/badge/framework-Streamlit-FF4B4B?style=flat-square)
+![Concept](https://img.shields.io/badge/concept-PCA%20%7C%20Data--Viz-blueviolet?style=flat-square)
 
-Welcome to the source code of my personal portfolio. This website is a comprehensive showcase of my skills, projects, and professional journey as an AI & Data Science Engineer. It was built from scratch with Next.js and is designed to be fully responsive, fast, and interactive.
+An interactive web app built with Python & Streamlit to compare football player profiles based on a Principal Component Analysis (PCA) of their 2022-2023 season stats. Data sourced from Kaggle.
 
 ## Table of Contents
 
@@ -14,64 +13,81 @@ Welcome to the source code of my personal portfolio. This website is a comprehen
 - [Key Features](#key-features)
 - [Built With](#built-with)
 - [Getting Started](#getting-started)
-- [Design & Structure](#design--structure)
+- [Technical Deep Dive](#technical-deep-dive)
+- [Future Improvements](#future-improvements)
+- [Data Source](#data-source)
 - [License](#license)
 
 ## About The Project
 
-This portfolio was created not just as a resume, but as a living project to demonstrate my skills in modern web development alongside my core expertise in AI and Data Science. The primary goal was to build a clean, professional, and high-performance platform to present my work to potential employers and collaborators.
+This personal project is a direct continuation of a previous academic PCA study. The goal was to transform a static analysis into an interactive and usable tool with **Streamlit**. The application allows users to visually compare professional football players based on their statistics from the 2022-2023 season.
 
-Every component, from the interactive project cards to the page transitions, was intentionally designed to provide a smooth and engaging user experience.
+The core idea emerged from observing the player data projected onto a 2D plane: since each point represents a player's statistical profile, the Euclidean distance between points can be used as a measure of similarity.
 
 ## Live Demo
 
-The portfolio is deployed on Vercel and can be accessed directly.
+The application is deployed on Render and can be accessed directly.
 
-**👉 [Visit the live website](https://YOUR_FINAL_URL_HERE)**  
+**👉 [Open the Live Application](https://comparateur-de-profils.onrender.com)**
+
+*Note: The app is hosted on a free service and may take a few seconds to wake up if it has been idle.*
 
 ## Key Features
 
--   **Fully Responsive Design**: A seamless experience on desktop, tablet, and mobile devices.
--   **Interactive Project Filtering**: Users can filter projects by category (academic/personal) and by year.
--   **Animated Page Transitions**: Smooth fade-in/fade-out transitions between pages using `framer-motion` for an app-like feel.
--   **Dynamic Content**: Project and career data are managed centrally in a dedicated data file, making the site easy to update.
--   **SEO Optimized**: Each page includes unique titles and meta descriptions, with structured data (Schema.org) for better understanding by search engines and AI.
--   **Interactive UI Elements**: Animated status badges, hover effects, and a custom 404 page enhance the user experience.
+-   **Explained Variance**: Visualizes the variance explained by each principal component.
+-   **Feature Contributions**: Displays the loadings of the selected variables on PC1 and PC2.
+-   **Nearest Neighbors**: Select a player to find and display the 5 most statistically similar players.
+-   **Interactive Scatter Plot**: An interactive plot of PC1 vs. PC2 with conceptual zone annotations.
 
 ## Built With
 
--   **[Next.js](https://nextjs.org/)**: React framework for production-grade applications.
--   **[React](https://reactjs.org/)**: Core library for building the user interface.
--   **[Framer Motion](https://www.framer.com/motion/)**: For animations and page transitions.
--   **CSS Modules & Global CSS**: For scoped and global styling.
--   **[Vercel](https://vercel.com/)**: For hosting and continuous deployment.
+-   **Python**
+-   **Streamlit**
+-   **Pandas**
+-   **NumPy**
+-   **Scikit-learn**
+-   **Plotly**
 
 ## Getting Started
 
 To get a local copy up and running, follow these steps.
 
-1.  **Prerequisites**: Ensure you have Node.js and npm installed.
+1.  **Prerequisites**: Ensure you have Python installed.
 2.  **Clone the repository:**
     ```sh
-    git clone https://github.com/nico916/nicolas-joue-portfolio.git
+    git clone https://github.com/nico916/football-comparator.git
     ```
-3.  **Navigate to the project directory:**
+3.  **Install dependencies:**
     ```sh
-    cd nicolas-joue-portfolio
+    pip install -r requirements.txt
     ```
-4.  **Install dependencies:**
+4.  **Run the Streamlit app:**
     ```sh
-    npm install
+    streamlit run ComparateurProfil.py
     ```
-5.  **Run the development server:**
-    ```sh
-    npm run dev
-    ```
-6.  Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-## Design & Structure
+## Technical Deep Dive
 
-The site is structured to separate concerns effectively:
--   **`/pages`**: Contains all the routes of the application.
--   **`/components`**: Holds reusable React components like the Header, Footer, and Layout.
--   **`/data`**: Cent
+The application relies on a pre-processed dataset where 6 key statistical variables were selected to define player profiles:
+-   **Shots**: Total shots (excluding penalties)
+-   **PasTotPrgDist**: Total progressive passing distance
+-   **Assists**: Goal assists
+-   **SCA**: Shot-Creating Actions
+-   **Tkl+Int**: Tackles + Interceptions
+-   **ToAtt**: Dribbles attempted
+
+These multi-dimensional stats are then reduced to two principal components (PC1 and PC2) using PCA, which form the basis for the 2D visualization and similarity calculations.
+
+## Future Improvements
+
+-   Offer a comparison method that does not rely on PCA.
+-   Add filters for age, league, etc.
+-   Implement a comparison history feature.
+
+## Data Source
+
+The player statistics used in this analysis are from the **"2022/2023 Football Player Stats"** dataset on Kaggle, available under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license. The data was cleaned, standardized, and transformed for this specific analysis.
+
+## License
+
+Distributed under the MIT License. See `LICENSE` file for more information.
